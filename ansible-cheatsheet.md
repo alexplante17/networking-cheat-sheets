@@ -62,6 +62,13 @@
 
 
 ## Installation & Setup
+
+sudo apt install ansible
+sudo dnf install ansible 
+... depends on your distro
+
+https://docs.ansible.com/ansible/latest/installation_guide/installation_distros.html
+
 ```bash
 # Install Ansible
 pip install ansible
