@@ -1,17 +1,65 @@
 # Ansible Cheat Sheet
 
-First, here's a brief overview of key Ansible concepts:
+## Key Concepts
 
-Control Node: The machine where Ansible is installed and from which playbooks are run.
-Managed Nodes: The target machines (hosts) that Ansible manages.
-Inventory: A list of managed nodes, which can be grouped and nested.
-Playbooks: YAML files that define the desired state using tasks and roles.
-Tasks: Individual units of work that Ansible executes.
-Roles: Reusable bundles of tasks, files, and variables.
-Modules: Programs that execute on target hosts to implement desired state.
-Variables: Values that can be reused across playbooks and templates.
-Facts: Information gathered about managed nodes.
-Handlers: Tasks that only run when notified by other tasks.
+### Core Components
+1. **Control Node**: 
+   - Machine where Ansible is installed
+   - Runs playbooks and manages hosts
+   - Must be Linux/Unix based
+
+2. **Managed Nodes**:
+   - Target machines (hosts) that Ansible manages
+   - No special software required except Python
+   - Can be any OS (Linux, Windows, etc.)
+
+3. **Inventory**:
+   - List of managed nodes
+   - Can be static (files) or dynamic
+   - Supports grouping and nesting
+   - Can include variables
+
+4. **Playbooks**:
+   - Written in YAML
+   - Define desired state
+   - Main unit of organization
+   - Contains plays, tasks, and roles
+
+5. **Tasks**:
+   - Individual units of work
+   - Uses modules to execute actions
+   - Should be idempotent
+
+6. **Roles**:
+   - Reusable bundles of tasks
+   - Standard directory structure
+   - Can include vars, files, templates
+   - Promotes code reuse
+
+7. **Modules**:
+   - Programs that execute on target hosts
+   - Implement specific functionality
+   - Return JSON data
+   - Should be idempotent
+
+8. **Variables**:
+   - Store dynamic values
+   - Multiple precedence levels
+   - Can be defined in many places
+   - Used in templates and tasks
+
+9. **Facts**:
+   - System information from managed nodes
+   - Automatically collected
+   - Can be used in playbooks
+   - Can be cached
+
+10. **Handlers**:
+    - Special tasks
+    - Run only when notified
+    - Usually used for service restarts
+    - Run at end of play
+
 
 ## Installation & Setup
 ```bash
