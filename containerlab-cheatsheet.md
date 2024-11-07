@@ -11,6 +11,15 @@ containerlab version
 
 ## Basic Commands
 
+### Import new container appliance
+```bash
+# pull latest available release from public registry
+docker pull ghcr.io/nokia/srlinux
+
+# Import a downloaded  file
+docker import xyz.tar
+
+```
 ### Lab Management
 ```bash
 # Deploy lab topology
@@ -18,12 +27,6 @@ containerlab deploy -t topology.yml
 
 # Destroy lab
 containerlab destroy -t topology.yml
-
-# Inspect lab
-containerlab inspect -t topology.yml
-
-# Save lab configs
-containerlab save -t topology.yml
 
 # Graph topology
 containerlab graph -t topology.yml
@@ -34,11 +37,13 @@ containerlab graph -t topology.yml
 # Execute command in container
 containerlab exec -t topology.yml --label ceos1 --cmd "show version"
 
-# Connect to container
-containerlab connect -t topology.yml --node ceos1
+# Connect to appliance via docker console
+docker exec -it <container-name/id> bash
+docker exec -it <container-name/id> sr_cli
 
-# Get container logs
-containerlab logs -t topology.yml --follow node1
+# Connect to appliance via SSH
+SSH ssh admin@<container-name>
+
 ```
 
 ## Topology File Structure
@@ -79,17 +84,6 @@ mgmt_ipv4: 172.20.20.100
 # Custom startup configuration
 startup-config: router1.cfg
 
-# Custom ports
-ports:
-  - 8080:80
-
-# Environment variables
-env:
-  CUSTOM_VAR: value
-
-# Extra mounts
-binds:
-  - /host/path:/container/path
 ```
 
 ### Link Configuration
@@ -104,23 +98,6 @@ links:
     unidirectional: false
 ```
 
-## Best Practices
-
-1. **Naming Conventions**
-   - Use meaningful lab names
-   - Label nodes based on their function
-   - Use consistent interface naming
-
-2. **Resource Management**
-   - Set memory limits for nodes
-   - Configure CPU allocation
-   - Use shared images when possible
-
-3. **Configuration**
-   - Keep startup configs in version control
-   - Use variables for repeated values
-   - Document topology changes
-
 ## Troubleshooting
 
 ### Common Issues
@@ -131,36 +108,21 @@ docker ps -a
 # View container logs
 docker logs <container-name>
 
-# Check network connectivity
-docker network inspect clab
+# List available docker image
+docker image ls
 
-# Verify node accessibility
-ping <node-mgmt-ip>
-```
+# Check when container will be healthy
+watch -n 1 "docker ps"
+
 
 ### Debug Commands
 ```bash
 # Deploy with debug logs
 containerlab deploy -t topology.yml --debug
 
-# Check system requirements
-containerlab system-check
 
-# Gather debug information
-containerlab tools cert-info
-```
 
-## Environment Variables
-```bash
-# Set default topology file
-export CLAB_TOPO=topology.yml
 
-# Set debug level
-export CLAB_DEBUG=1
-
-# Set custom registry
-export CLAB_REGISTRY=registry.example.com
-```
 
 
 ## SR-Linux
