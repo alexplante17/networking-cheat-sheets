@@ -62,14 +62,12 @@ topology:
 ```
 
 ## Common Node Kinds
-- `ceos`: Arista cEOS
-- `srl`: Nokia SR Linux
-- `crpd`: Juniper cRPD
-- `linux`: Linux container
-- `cvx`: Cumulus VX
-- `sonic-vs`: SONiC virtual switch
-- `vr-ros`: MikroTik RouterOS
-- `fr-linux`: FRRouting on Linux
+- `arista_ceos`: Arista cEOS
+- `nokia_srlinux`: Nokia SR Linux
+- `juniper_crpd`: Juniper cRPD
+- `sonic`: SONiC
+- `cisco_n9kv`: Cisco Nexus 9000v
+- `cisco_xrd`: Cisco XRd
 
 ## Advanced Features
 
@@ -163,3 +161,39 @@ export CLAB_DEBUG=1
 # Set custom registry
 export CLAB_REGISTRY=registry.example.com
 ```
+
+
+## SR-Linux
+
+### Image
+
+```bash
+# pull latest available release
+docker pull ghcr.io/nokia/srlinux
+```
+
+### Interfaces naming
+
+Naming convention:
+
+ethernet-1/1 - first ethernet interface on line card 1
+ethernet-1/2 - second interface on line card 1
+
+Breakout interfaces will have the mapped Linux interface name eX-Y-Z where Z is the breakout port number. 
+
+### Credentials
+
+admin:NokiaSrl1!
+
+### Ressources 
+
+: Navigating SR-Linux:  https://learn.srlinux.dev/blog/2024/navigating-sr-linux/
+: Get started: https://learn.srlinux.dev                       
+: Container:   https://go.srlinux.dev/container-image          
+: Docs:        https://doc.srlinux.dev/24-7                    
+: Rel. notes:  https://doc.srlinux.dev/rn24-7-2                
+: YANG:        https://yang.srlinux.dev/v24.7.2                
+: Discord:     https://go.srlinux.dev/discord                 
+: Contact:     https://go.srlinux.dev/contact-sales   
+
+
