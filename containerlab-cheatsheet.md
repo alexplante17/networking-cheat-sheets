@@ -7,6 +7,7 @@ bash -c "$(curl -sL https://get.containerlab.dev)"
 
 # Verify installation
 containerlab version
+
 ```
 
 ## Basic Commands
@@ -25,6 +26,9 @@ docker import xyz.tar
 # Deploy lab topology
 containerlab deploy -t topology.yml
 
+# Deploy with debug logs
+containerlab deploy -t topology.yml --debug
+
 # Destroy lab
 containerlab destroy -t topology.yml
 
@@ -34,8 +38,8 @@ containerlab graph -t topology.yml
 
 ### Container Operations
 ```bash
-# Execute command in container
-containerlab exec -t topology.yml --label ceos1 --cmd "show version"
+# Get container names
+docker ps
 
 # Connect to appliance via docker console
 docker exec -it <container-name/id> bash
@@ -113,16 +117,7 @@ docker image ls
 
 # Check when container will be healthy
 watch -n 1 "docker ps"
-
-
-### Debug Commands
-```bash
-# Deploy with debug logs
-containerlab deploy -t topology.yml --debug
-
-
-
-
+```
 
 
 ## SR-Linux
