@@ -74,7 +74,7 @@ topology:
 - `arista_ceos`: Arista cEOS
 - `nokia_srlinux`: Nokia SR Linux
 - `juniper_crpd`: Juniper cRPD
-- `sonic`: SONiC
+- `sonic-vs`: SONiC Container
 - `cisco_n9kv`: Cisco Nexus 9000v
 - `cisco_xrd`: Cisco XRd
 
@@ -154,3 +154,11 @@ admin:NokiaSrl1!
 : Contact:     https://go.srlinux.dev/contact-sales   
 
 
+## SONiC
+
+https://containerlab.dev/manual/kinds/sonic-vs/#__tabbed_1_2
+Grab docker-sonic-vs.gz from https://sonic.software/
+
+Load the image
+
+docker load < docker-sonic.vs.gz
